@@ -1,16 +1,11 @@
 import { View, StyleSheet, Image } from "react-native";
 import React from "react";
+import icon_main_logo from "../../assets/icon_main_logo.png";
 
 const Welcome = () => {
   return (
     <View style={styles.root}>
-      <Image
-        style={styles.mainLogo}
-        source={{
-          uri: "https://github.com/fengbanjiazhu/RedBook/blob/main/assets/icon_main_logo.png?raw=true",
-        }}
-        alt="mainlogo"
-      />
+      <Image style={styles.mainLogo} source={icon_main_logo} alt="mainlogo" />
     </View>
   );
 };
@@ -25,9 +20,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   mainLogo: {
-    width: 200,
+    width: 210,
     height: 110,
-    marginTop: 300,
+    marginTop: 200,
     backgroundColor: "white",
+    resizeMode: "contain",
   },
 });
