@@ -1,12 +1,25 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import TermsOfService from "./TermsOfService";
 import icon_main_logo from "../../../assets/icon_main_logo.png";
+import { LoginTypes } from "../../pages/Login";
 
-const QuickLogin = () => {
+const QuickLogin = ({
+  onTextPress,
+}: {
+  onTextPress: React.Dispatch<React.SetStateAction<LoginTypes>>;
+}) => {
   return (
     <View style={styles.root}>
       <Image style={styles.mainLogo} source={icon_main_logo} />
+      <TouchableOpacity
+        onPress={() => {
+          onTextPress("input");
+        }}
+        style={styles.otherLogin}
+      >
+        <Text>Other way for login</Text>
+      </TouchableOpacity>
       <TermsOfService></TermsOfService>
     </View>
   );
@@ -29,6 +42,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     resizeMode: "contain",
   },
+  otherLogin: {},
   radioButton: {
     width: 16,
     height: 16,

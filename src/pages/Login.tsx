@@ -3,15 +3,16 @@ import React, { useState } from "react";
 import QuickLogin from "../components/Login/QuickLogin";
 import InputLogin from "../components/Login/InputLogin";
 
-type LoginTypes = "quick" | "input";
+export type LoginTypes = "quick" | "input";
 
 const Login = () => {
   const [loginType, setLoginType] = useState<LoginTypes>("quick");
 
   return (
     <View style={styles.root}>
-      <Text>Login Page</Text>
-      <View>{loginType === "quick" ? <QuickLogin /> : <InputLogin />}</View>
+      <View>
+        {loginType === "quick" ? <QuickLogin onTextPress={setLoginType} /> : <InputLogin />}
+      </View>
     </View>
   );
 };
