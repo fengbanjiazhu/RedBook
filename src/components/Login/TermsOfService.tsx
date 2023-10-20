@@ -1,12 +1,16 @@
-import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, Image, StyleSheet, TouchableOpacity, ViewStyle } from "react-native";
 import React, { useState } from "react";
 import icon_unselected from "../../../assets/icon_unselected.png";
 import icon_selected from "../../../assets/icon_selected.png";
 
-const TermsOfService = () => {
+type TermProps = {
+  style?: ViewStyle;
+};
+
+const TermsOfService = ({ style }: TermProps) => {
   const [check, setCheck] = useState<boolean>(false);
   return (
-    <View style={styles.protocolLayout}>
+    <View style={[styles.protocolLayout, style]}>
       <TouchableOpacity
         onPress={() => {
           setCheck(!check);

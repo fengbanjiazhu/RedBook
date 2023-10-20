@@ -16,8 +16,8 @@ const QuickLogin = ({
       <Image style={styles.mainLogo} source={icon_main_logo} />
 
       <View style={styles.layout}>
-        <QuickLoginBtn button="original" />
-        <QuickLoginBtn button="weChat" />
+        <QuickLoginBtn button="original" label="Quick Login" />
+        <QuickLoginBtn button="weChat" label="WeChat Login" />
 
         <TouchableOpacity
           onPress={() => {

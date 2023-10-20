@@ -1,8 +1,11 @@
-import { View, Text, StyleSheet, Pressable } from "react-native";
-import { Icon, Input } from "native-base";
+import { View, Text, StyleSheet, Pressable, TouchableOpacity } from "react-native";
+import { HStack, Icon, Input } from "native-base";
 import React, { useState } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 import CountryCodeSelect from "./CountryCodeSelect";
+import ToLink from "../UI/ToLink";
+import QuickLoginBtn from "./QuickLoginBtn";
+import TermsOfService from "./TermsOfService";
 
 const InputLogin = () => {
   const [show, setShow] = useState(false);
@@ -37,6 +40,14 @@ const InputLogin = () => {
             </Pressable>
           }
         />
+        <HStack style={styles.links}>
+          <ToLink text="Code login" onPress={() => {}} style={{ color: "blue" }} />
+          <ToLink text="Forget Password?" onPress={() => {}} style={{ color: "blue" }} />
+        </HStack>
+
+        <QuickLoginBtn button="original" label="Login" style={{ marginBottom: 10 }} />
+
+        <TermsOfService />
       </View>
     </View>
   );
@@ -62,6 +73,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "#999",
     marginTop: 5,
+    marginBottom: 20,
   },
   formLayout: {
     width: "100%",
@@ -69,5 +81,10 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     marginTop: 10,
+  },
+  links: {
+    marginVertical: 10,
+    width: 250,
+    justifyContent: "space-between",
   },
 });
