@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     flexDirection: "column",
     alignItems: "center",
-    paddingHorizontal: 40,
+    paddingHorizontal: 56,
   },
   mainLogo: {
     width: 210,

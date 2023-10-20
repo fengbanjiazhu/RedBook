@@ -1,6 +1,5 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
-import icon_unselected from "../../../assets/icon_unselected.png";
 
 const InputLogin = () => {
   return (

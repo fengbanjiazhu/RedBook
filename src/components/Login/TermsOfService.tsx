@@ -31,7 +31,6 @@ export default TermsOfService;
 const styles = StyleSheet.create({
   protocolLayout: {
     width: "100%",
-    // flex: 1,
     flexDirection: "row",
     alignItems: "center",
   },
