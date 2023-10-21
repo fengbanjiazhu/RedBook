@@ -6,15 +6,17 @@ type QuickButtonProps = {
   label: string;
   button: "original" | "weChat";
   style?: ViewStyle;
+  onPress?: () => void;
 };
 
-const QuickLoginBtn = ({ button, label, style }: QuickButtonProps) => {
+const QuickLoginBtn = ({ button, label, style, onPress }: QuickButtonProps) => {
   const buttonType = button === "weChat";
 
   return (
     <TouchableOpacity
       style={[style, styles.root, buttonType ? styles.weChat : styles.original]}
       activeOpacity={0.7}
+      onPress={onPress}
     >
       {buttonType ? <Image style={styles.buttonIcon} source={wx_small} /> : null}
 

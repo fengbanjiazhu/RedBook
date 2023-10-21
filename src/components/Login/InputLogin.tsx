@@ -6,6 +6,7 @@ import CountryCodeSelect from "./CountryCodeSelect";
 import ToLink from "../UI/ToLink";
 import QuickLoginBtn from "./QuickLoginBtn";
 import TermsOfService from "./TermsOfService";
+import { useJumpToPage } from "../../Hooks/useJumpToPage";
 
 import icon_wx from "../../../assets/icon_wx.png";
 import icon_qq from "../../../assets/icon_qq.webp";
@@ -18,6 +19,7 @@ type InputLoginProps = {
 
 const InputLogin = ({ onClose }: InputLoginProps) => {
   const [show, setShow] = useState(false);
+  const jumpToHome = useJumpToPage("Home");
 
   return (
     <View style={styles.root}>
@@ -69,7 +71,14 @@ const InputLogin = ({ onClose }: InputLoginProps) => {
           <ToLink text="Forget Password?" onPress={() => {}} style={{ color: "blue" }} />
         </HStack>
 
-        <QuickLoginBtn button="original" label="Login" style={{ marginBottom: 10 }} />
+        <QuickLoginBtn
+          onPress={() => {
+            jumpToHome();
+          }}
+          button="original"
+          label="Login"
+          style={{ marginBottom: 10 }}
+        />
 
         <TermsOfService />
 
