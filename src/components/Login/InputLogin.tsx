@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet, Pressable, TouchableOpacity } from "react-native";
-import { HStack, Icon, Input } from "native-base";
+import { View, Text, StyleSheet, Pressable, Image, LayoutAnimation } from "react-native";
+import { HStack, Icon, IconButton, Input } from "native-base";
 import React, { useState } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 import CountryCodeSelect from "./CountryCodeSelect";
@@ -7,11 +7,35 @@ import ToLink from "../UI/ToLink";
 import QuickLoginBtn from "./QuickLoginBtn";
 import TermsOfService from "./TermsOfService";
 
-const InputLogin = () => {
+import icon_wx from "../../../assets/icon_wx.png";
+import icon_qq from "../../../assets/icon_qq.webp";
+
+import { LoginTypes } from "../../pages/Login";
+
+type InputLoginProps = {
+  onClose: React.Dispatch<React.SetStateAction<LoginTypes>>;
+};
+
+const InputLogin = ({ onClose }: InputLoginProps) => {
   const [show, setShow] = useState(false);
 
   return (
     <View style={styles.root}>
+      <IconButton
+        style={styles.close}
+        size={"md"}
+        variant="ghost"
+        _icon={{
+          as: MaterialIcons,
+          name: "close",
+          color: "black",
+        }}
+        onPress={() => {
+          LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+          onClose("quick");
+        }}
+      />
+
       <Text style={styles.title}>Login</Text>
       <Text style={styles.tips}>Auto signup for unregistered accounts</Text>
 
@@ -48,6 +72,18 @@ const InputLogin = () => {
         <QuickLoginBtn button="original" label="Login" style={{ marginBottom: 10 }} />
 
         <TermsOfService />
+
+        <HStack space={20} marginTop={20}>
+          <ToLink
+            icon={<Image style={{ width: 60, height: 60 }} source={icon_wx} alt="WeChat icon" />}
+            onPress={() => {}}
+          ></ToLink>
+
+          <ToLink
+            icon={<Image style={{ width: 60, height: 60 }} source={icon_qq} alt="QQ icon" />}
+            onPress={() => {}}
+          ></ToLink>
+        </HStack>
       </View>
     </View>
   );
@@ -63,11 +99,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 16,
   },
+  close: {
+    top: 70,
+    left: 10,
+    position: "absolute",
+    color: "black",
+  },
   title: {
     fontSize: 28,
     color: "#333",
     fontWeight: "bold",
-    marginTop: 60,
+    marginTop: 100,
   },
   tips: {
     fontSize: 14,

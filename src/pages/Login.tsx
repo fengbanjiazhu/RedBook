@@ -1,4 +1,4 @@
-import { View, Image, StyleSheet, Text } from "react-native";
+import { View, StyleSheet } from "react-native";
 import React, { useState } from "react";
 import QuickLogin from "../components/Login/QuickLogin";
 import InputLogin from "../components/Login/InputLogin";
@@ -11,7 +11,11 @@ const Login = () => {
   return (
     <View style={styles.root}>
       <View>
-        {loginType === "quick" ? <QuickLogin onTextPress={setLoginType} /> : <InputLogin />}
+        {loginType === "quick" ? (
+          <QuickLogin onTextPress={setLoginType} />
+        ) : (
+          <InputLogin onClose={setLoginType} />
+        )}
       </View>
     </View>
   );

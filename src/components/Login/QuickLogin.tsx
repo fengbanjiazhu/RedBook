@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity, LayoutAnimation } from "react-native";
 import React from "react";
 import TermsOfService from "./TermsOfService";
 import icon_main_logo from "../../../assets/icon_main_logo.png";
@@ -21,6 +21,7 @@ const QuickLogin = ({
 
         <TouchableOpacity
           onPress={() => {
+            LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
             onTextPress("input");
           }}
           style={styles.otherLogin}
