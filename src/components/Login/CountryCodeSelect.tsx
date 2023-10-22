@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import { CheckIcon, Select } from "native-base";
 import { countryCode } from "../../constant/countryCode";
 
@@ -8,6 +8,7 @@ const CountryCodeSelect = () => {
   return (
     <Select
       selectedValue={code}
+      defaultValue={"+61"}
       minWidth="100"
       _selectedItem={{
         bg: "teal.600",
@@ -23,4 +24,4 @@ const CountryCodeSelect = () => {
   );
 };
 
-export default CountryCodeSelect;
+export default memo(CountryCodeSelect);
