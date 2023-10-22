@@ -1,16 +1,17 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity, LayoutAnimation } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import TermsOfService from "./TermsOfService";
 import icon_main_logo from "../../../assets/icon_main_logo.png";
 import icon_arrow from "../../../assets/icon_arrow.png";
 import { LoginTypes } from "../../pages/Login";
 import QuickLoginBtn from "./QuickLoginBtn";
 
-const QuickLogin = ({
-  onTextPress,
-}: {
+type QuickLoginProps = {
   onTextPress: React.Dispatch<React.SetStateAction<LoginTypes>>;
-}) => {
+};
+
+const QuickLogin = ({ onTextPress }: QuickLoginProps) => {
+  const [check, setCheck] = useState(false);
   return (
     <View style={styles.root}>
       <Image style={styles.mainLogo} source={icon_main_logo} />
@@ -31,7 +32,7 @@ const QuickLogin = ({
         </TouchableOpacity>
       </View>
 
-      <TermsOfService></TermsOfService>
+      <TermsOfService check={check} setCheck={setCheck}></TermsOfService>
     </View>
   );
 };

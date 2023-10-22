@@ -5,10 +5,11 @@ import icon_selected from "../../../assets/icon_selected.png";
 
 type TermProps = {
   style?: ViewStyle;
+  check: boolean;
+  setCheck: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const TermsOfService = ({ style }: TermProps) => {
-  const [check, setCheck] = useState<boolean>(false);
+const TermsOfService = ({ check, setCheck, style }: TermProps) => {
   return (
     <View style={[styles.protocolLayout, style]}>
       <TouchableOpacity
