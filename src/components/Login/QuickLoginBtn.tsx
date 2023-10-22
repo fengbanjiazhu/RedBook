@@ -14,7 +14,7 @@ const QuickLoginBtn = ({ button, label, style, onPress }: QuickButtonProps) => {
 
   return (
     <TouchableOpacity
-      style={[style, styles.root, buttonType ? styles.weChat : styles.original]}
+      style={[styles.root, buttonType ? styles.weChat : styles.original, style]}
       activeOpacity={0.7}
       onPress={onPress}
     >

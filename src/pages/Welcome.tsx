@@ -1,17 +1,12 @@
-import { View, StyleSheet, Image, Button } from "react-native";
+import { View, StyleSheet, Image } from "react-native";
 import React, { useEffect } from "react";
-import { useNavigation } from "@react-navigation/native";
-import type { StackNavigationProp } from "@react-navigation/stack";
-import { useJumpToPage } from "../Hooks/useJumpToPage";
+
+import { useReplaceToPage } from "../Hooks/useJumpToPage";
 
 import icon_main_logo from "../../assets/icon_main_logo.png";
 
-import { RootStackParamList } from "../navigation/StackNavi";
-
-type welcomeScreenProp = StackNavigationProp<RootStackParamList, "Welcome">;
-
 const Welcome = () => {
-  const jumpToLogin = useJumpToPage("Login");
+  const jumpToLogin = useReplaceToPage("Login");
 
   useEffect(() => {
     setTimeout(() => {

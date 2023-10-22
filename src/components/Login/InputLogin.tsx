@@ -1,13 +1,14 @@
 import { View, Text, StyleSheet, Pressable, Image, LayoutAnimation } from "react-native";
 import { HStack, Icon, IconButton, Input } from "native-base";
-import React, { useState } from "react";
-import { MaterialIcons } from "@expo/vector-icons";
+import React, { useCallback, useState } from "react";
+import { useReplaceToPage } from "../../Hooks/useJumpToPage";
+
 import CountryCodeSelect from "./CountryCodeSelect";
 import ToLink from "../UI/ToLink";
 import QuickLoginBtn from "./QuickLoginBtn";
 import TermsOfService from "./TermsOfService";
-import { useJumpToPage } from "../../Hooks/useJumpToPage";
 
+import { MaterialIcons } from "@expo/vector-icons";
 import icon_wx from "../../../assets/icon_wx.png";
 import icon_qq from "../../../assets/icon_qq.webp";
 
@@ -19,7 +20,21 @@ type InputLoginProps = {
 
 const InputLogin = ({ onClose }: InputLoginProps) => {
   const [show, setShow] = useState(false);
-  const jumpToHome = useJumpToPage("Home");
+  const [check, setCheck] = useState(false);
+
+  const [account, setAccount] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
+  const emptyInput = password.length < 5 || account === "";
+
+  const loginToHome = useReplaceToPage("Home");
+
+  const handleAccChange = useCallback((newText: string) => {
+    setAccount(newText);
+  }, []);
+  const handlePwdChange = useCallback((newText: string) => {
+    setPassword(newText);
+  }, []);
 
   return (
     <View style={styles.root}>
@@ -44,14 +59,17 @@ const InputLogin = ({ onClose }: InputLoginProps) => {
       <View style={styles.formLayout}>
         <Input
           variant="underlined"
+          keyboardType="number-pad"
           size="lg"
           placeholder="Mobile number"
           InputLeftElement={<CountryCodeSelect />}
+          onChangeText={handleAccChange}
         />
 
         <Input
           style={{ marginTop: 10 }}
           variant="underlined"
+          onChangeText={handlePwdChange}
           type={show ? "text" : "password"}
           size="lg"
           placeholder="Password"
@@ -66,6 +84,7 @@ const InputLogin = ({ onClose }: InputLoginProps) => {
             </Pressable>
           }
         />
+
         <HStack style={styles.links}>
           <ToLink text="Code login" onPress={() => {}} style={{ color: "blue" }} />
           <ToLink text="Forget Password?" onPress={() => {}} style={{ color: "blue" }} />
@@ -73,14 +92,18 @@ const InputLogin = ({ onClose }: InputLoginProps) => {
 
         <QuickLoginBtn
           onPress={() => {
-            jumpToHome();
+            if (emptyInput || !check) return;
+
+            loginToHome();
           }}
           button="original"
           label="Login"
-          style={{ marginBottom: 10 }}
+          style={
+            emptyInput ? { marginBottom: 10, backgroundColor: "#b0b0b0" } : { marginBottom: 10 }
+          }
         />
 
-        <TermsOfService />
+        <TermsOfService check={check} setCheck={setCheck} />
 
         <HStack space={20} marginTop={20}>
           <ToLink

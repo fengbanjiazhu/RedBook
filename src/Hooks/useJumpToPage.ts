@@ -13,3 +13,12 @@ export const useJumpToPage = (page: AllPages) => {
 
   return jumpToPage;
 };
+
+export const useReplaceToPage = (page: AllPages) => {
+  const navigation = useNavigation<LoginScreenProp>();
+  const jumpToPage = function () {
+    navigation.replace(page);
+  };
+
+  return jumpToPage;
+};
