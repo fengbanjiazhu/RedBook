@@ -1,7 +1,9 @@
-import { View, Text, StyleSheet, Pressable, Image, LayoutAnimation } from "react-native";
+import { View, Text, StyleSheet, Pressable, Image, LayoutAnimation, Alert } from "react-native";
 import { HStack, Icon, IconButton, Input } from "native-base";
 import React, { useCallback, useState } from "react";
 import { useReplaceToPage } from "../../Hooks/useJumpToPage";
+
+import { getUserData } from "../../utils/Request";
 
 import CountryCodeSelect from "./CountryCodeSelect";
 import ToLink from "../UI/ToLink";
@@ -13,6 +15,7 @@ import icon_wx from "../../../assets/icon_wx.png";
 import icon_qq from "../../../assets/icon_qq.webp";
 
 import { LoginTypes } from "../../pages/Login";
+import { twoButtonAlert } from "../../utils/AlertHelper";
 
 type InputLoginProps = {
   onClose: React.Dispatch<React.SetStateAction<LoginTypes>>;
@@ -91,8 +94,12 @@ const InputLogin = ({ onClose }: InputLoginProps) => {
         </HStack>
 
         <QuickLoginBtn
-          onPress={() => {
+          onPress={async () => {
             if (emptyInput || !check) return;
+
+            const data = await getUserData(account, password);
+
+            if (data.message) return twoButtonAlert("Error", data.message);
 
             loginToHome();
           }}
